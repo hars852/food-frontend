@@ -1,0 +1,26 @@
+import { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { StoreContext } from "../../Context/StoreContext";
+import RatingStars from "../../components/RatingStars/RatingStars";
+import VegBadge from "../../components/VegBadge/VegBadge";
+import { formatPrice, getDiscountPercent, getEffectivePrice } from "../../utils/formatPrice";
+import { imageUrl } from "../../utils/imageUrl";
+import "./FoodDetails.css";
+import "./ReviewForm.css";
+
+const FoodDetails = () => {
+  const { foodId } = useParams(); const navigate = useNavigate(); const location = useLocation();
+  const { food_list, url, addToCart, token } = useContext(StoreContext);
+  const [food, setFood] = useState(() => food_list.find((item) => item._id === foodId));
+  const [quantity, setQuantity] = useState(1); const [addons, setAddons] = useState([]); const [instructions, setInstructions] = useState(""); const [rating, setRating] = useState(5); const [reviewText, setReviewText] = useState(""); const [submitting, setSubmitting] = useState(false);
+  useEffect(() => { if (!food) axios.get(`${url}/api/food/${foodId}`).then((res) => { if (res.data.success) setFood(res.data.data); }).catch(() => toast.error("Unable to load this dish.")); }, [food, foodId, url]);
+  if (!food) return <main className="details-page"><p>Loading dish...</p></main>;
+  const unavailable = food.isAvailable === false; const price = getEffectivePrice(food);
+  const toggleAddon = (addon) => setAddons((current) => current.some((item) => item.name === addon.name) ? current.filter((item) => item.name !== addon.name) : [...current, addon]);
+  const add = async (buyNow = false) => { if (unavailable) return; await addToCart(food._id, quantity, addons, instructions); toast.success(`${food.name} added to cart`); if (buyNow) navigate("/cart"); };
+  const submitReview = async (event) => { event.preventDefault(); if (!token) { toast.info("Please sign in to write a review."); navigate("/login", { state: { from: { pathname: location.pathname } } }); return; } setSubmitting(true); try { const response = await axios.post(`${url}/api/reviews/add`, { foodId, rating, reviewText }, { headers: { token } }); if (!response.data.success) throw new Error(response.data.message); toast.success(response.data.message); setReviewText(""); const refreshed = await axios.get(`${url}/api/food/${foodId}`); if (refreshed.data.success) setFood(refreshed.data.data); } catch (error) { toast.error(error.response?.data?.message || error.message || "Unable to save review."); } finally { setSubmitting(false); } };
+  return <main className="details-page"><div className="details-layout"><img className="details-image" src={imageUrl(url, food.image)} alt={food.name} /><section className="details-content"><div className="details-title"><h1>{food.name}</h1><VegBadge isVeg={food.isVeg}/></div><div className="details-rating"><RatingStars rating={food.ratingAvg || 0}/><span>{food.ratingAvg || 0} ({food.ratingCount || 0} reviews)</span></div><p>{food.description}</p><div className="details-price">{formatPrice(price)} {food.isSpecial && <><del>{formatPrice(food.price)}</del><small>{getDiscountPercent(food)}% off</small></>}</div><p className={unavailable ? "unavailable-text" : "available-text"}>{unavailable ? "Currently unavailable" : "Available"}</p>{food.ingredients?.length > 0 && <div><h3>Ingredients</h3><div className="chips">{food.ingredients.map((ingredient) => <span key={ingredient}>{ingredient}</span>)}</div></div>}{food.addons?.length > 0 && <fieldset className="addons"><legend>Add-ons</legend>{food.addons.map((addon) => <label key={addon.name}><input type="checkbox" checked={addons.some((item) => item.name === addon.name)} onChange={() => toggleAddon(addon)}/>{addon.name} <span>+{formatPrice(addon.price)}</span></label>)}</fieldset>}<label className="instruction-label">Special instructions<textarea value={instructions} onChange={(event) => setInstructions(event.target.value)} placeholder="Less spicy, no onion..." maxLength="250" /></label><div className="details-actions"><div className="quantity"><button onClick={() => setQuantity(Math.max(1, quantity - 1))}>−</button><span>{quantity}</span><button onClick={() => setQuantity(quantity + 1)}>+</button></div><button disabled={unavailable} onClick={() => add(false)}>Add to Cart</button><button disabled={unavailable} className="buy-now" onClick={() => add(true)}>Buy Now</button></div>{!token && <p className="signin-note">You can browse and add items; sign in before checkout.</p>}<form className="review-form" onSubmit={submitReview}><h3>Rate this dish</h3><label>Your rating<select value={rating} onChange={(event) => setRating(Number(event.target.value))}>{[5,4,3,2,1].map((value) => <option key={value} value={value}>{value} star{value !== 1 ? "s" : ""}</option>)}</select></label><label>Your review<textarea required value={reviewText} onChange={(event) => setReviewText(event.target.value)} maxLength="500" placeholder="Tell us what you liked..." /></label><button disabled={submitting}>{submitting ? "Saving..." : "Submit review"}</button></form></section></div></main>;
+};
+export default FoodDetails;

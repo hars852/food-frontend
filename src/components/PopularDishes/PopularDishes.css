@@ -1,0 +1,37 @@
+.home-section {
+  margin: 40px 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.view-all-link {
+  color: tomato;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .section-header h2 { font-size: 22px; }
+  .food-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
+}

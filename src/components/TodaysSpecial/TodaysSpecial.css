@@ -1,0 +1,14 @@
+.todays-special {
+  background: linear-gradient(135deg, #fff5f2 0%, #fff 100%);
+  padding: 32px;
+  border-radius: 16px;
+}
+
+.special-badge {
+  background: tomato;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}

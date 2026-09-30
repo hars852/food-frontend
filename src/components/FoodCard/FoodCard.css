@@ -1,0 +1,140 @@
+.food-card {
+  border-radius: 15px;
+  box-shadow: 0 0 10px #00000015;
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  background: white;
+}
+
+.food-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px #00000020;
+}
+
+.food-card.unavailable {
+  opacity: 0.75;
+}
+
+.food-card-img-wrap {
+  position: relative;
+}
+
+.food-card-img-wrap img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.food-card-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.availability-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.available-badge { background: #e8f5e9; color: #2e7d32; }
+.unavailable-badge { background: #ffebee; color: #c62828; }
+
+.food-card-img-wrap img.food-card-add-btn {
+  width: 38px;
+  height: 38px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.food-card-counter {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 50px;
+  background: white;
+}
+
+.food-card-img-wrap .food-card-counter img { width: 28px; height:28px; aspect-ratio:1; object-fit:contain; cursor: pointer; }
+
+.food-card-info { padding: 16px; }
+
+.food-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.food-card-header h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.food-card-desc {
+  color: #676767;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.food-card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.food-card-price {
+  color: tomato;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.food-card-original {
+  color: #999;
+  text-decoration: line-through;
+  font-size: 14px;
+}
+
+.food-card-discount {
+  color: #2e7d32;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.food-card-reviews {
+  font-size: 12px;
+  color: #999;
+  margin-top: 4px;
+}
+
+.food-card-details-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: tomato;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.food-card-details-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #676767;
+}
+
+.empty-state button {
+  margin-top: 12px;
+  background: tomato;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.empty-state button:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,147 @@
+.cart {
+  margin-top: 100px;
+  padding: 0 5vw;
+}
+
+.cart-items-title {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  color: grey;
+  font-size: max(1vw, 12px);
+}
+
+.cart-items-item {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
+  align-items: center;
+  margin: 10px 0px;
+  color: black;
+  cursor: pointer;
+}
+
+.cart-items-item img {
+  width: 50px;
+}
+
+.cart hr {
+  height: 1px;
+  background-color: #e2e2e2;
+  border: none;
+}
+
+.cart-bottom {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: max(12vw, 20px);
+  flex-wrap: wrap;
+}
+
+.cart-total {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 250px;
+}
+
+.cart-total-details {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+}
+
+.cart-total hr {
+  margin: 10px 0px;
+}
+
+.cart-total button {
+  border: none;
+  color: white;
+  background-color: tomato;
+  width: max(15vw, 200px);
+  padding: 12px 0px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cart-promocode {
+  flex: 1;
+  min-width: 250px;
+}
+
+.cart-promocode p {
+  color: #555;
+}
+
+.cart-promocode-input {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cart-promocode-input input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 10px;
+  font-size: 14px;
+}
+
+.cart-promocode-input button {
+  width: max(10vw, 120px);
+  padding: 12px 5px;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cart-item-note { margin: 4px 0 10px 14%; color: #666; font-size: 13px; }
+.coupon-success { color: #16833a !important; margin-top: 8px; font-size: 14px; }
+.coupon-error { color: #bd3131 !important; margin-top: 8px; font-size: 14px; }
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+  .cart-items-title,
+  .cart-items-item {
+    grid-template-columns: 1fr 1fr;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .cart-items-title p:nth-child(n+3),
+  .cart-items-item p:nth-child(n+3) {
+    display: none;
+  }
+
+  .cart-bottom {
+    flex-direction: column;
+  }
+
+  .cart-total,
+  .cart-promocode {
+    width: 100%;
+  }
+
+  .cart-total button,
+  .cart-promocode-input button {
+    width: 100%;
+  }
+
+  .cart-promocode-input {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cart-promocode-input input {
+    padding: 10px;
+  }
+}

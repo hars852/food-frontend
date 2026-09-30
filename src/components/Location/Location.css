@@ -1,0 +1,92 @@
+.location-section {
+  background: #fafafa;
+  padding: 40px 32px;
+  border-radius: 16px;
+}
+
+.open-status {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.open-status.open {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.open-status.closed {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-item strong {
+  display: block;
+  font-size: 14px;
+  color: tomato;
+  margin-bottom: 4px;
+}
+
+.info-item p, .info-item a {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.hours-list {
+  list-style: none;
+}
+
+.hours-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.directions-btn {
+  display: inline-block;
+  background: tomato;
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 500;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.directions-btn:hover {
+  opacity: 0.9;
+}
+
+.location-social {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.location-social a {
+  font-size: 13px;
+  color: tomato;
+  padding: 6px 12px;
+  border: 1px solid tomato;
+  border-radius: 20px;
+}
+
+.location-social a:hover {
+  background: tomato;
+  color: white !important;
+}
+
+@media (max-width: 768px) {
+  .location-section { padding: 32px 20px; }
+}

@@ -1,0 +1,28 @@
+.rating-stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rating-stars .stars {
+  display: flex;
+  gap: 1px;
+}
+
+.rating-stars .star {
+  line-height: 1;
+}
+
+.rating-stars .star-full { color: #ffb800; }
+.rating-stars .star-half { color: #ffb800; opacity: 0.5; }
+.rating-stars .star-empty { color: #ddd; }
+
+.rating-stars-sm .star { font-size: 14px; }
+.rating-stars-md .star { font-size: 18px; }
+.rating-stars-lg .star { font-size: 24px; }
+
+.rating-value {
+  font-size: 13px;
+  color: #676767;
+  font-weight: 500;
+}

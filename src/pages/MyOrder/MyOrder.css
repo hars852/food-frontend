@@ -1,0 +1,73 @@
+.my-orders {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.my-orders h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.my-order-order {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.my-order-order:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.my-order-order img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.my-order-order p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: #333;
+}
+
+.my-order-order .status-dot {
+  color: green;
+  margin-right: 5px;
+}
+
+.my-order-order button {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background-color: #ff5a5f;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.my-order-order button:hover {
+  background-color: #e14d50;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .my-order-order {
+    width: 90%;
+  }
+}
